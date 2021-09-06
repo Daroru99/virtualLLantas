@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ld3x0kcAAAAACn-BMvtxOrSejhk0xFLJflkNVh0"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#ingresar').click(function() {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6Ld3x0kcAAAAACn-BMvtxOrSejhk0xFLJflkNVh0', {
+                        action: 'validarUsuario'
+                    }).then(function(token) {
+                        $('#form-login').prepend('<input type="hidden" name="token" value="' + token + '">');
+                        $('#form-login').prepend('<input type="hidden" name="action" value="validarUsuario">');
+                        $('#form-login').submit();
+                    });
+                });
+            });
+        });
+    </script>
+    <title>Login</title>
+</head>
+
+<body>
+    <img src="/imagenes/67-678101_compartir-pila-de-llantas-png.png" class="imgPrin" alt="">
+    <div class="containerPrincipal">
+        <div class="welcome">
+            <h1> INICIAR SESION </h1>
+        </div>
+        <div class="formLogin">
+            <form action="login.php" method="post" id="form-login">
+                <table class="tableLogin">
+                    <tr>
+                        <td align="center" rowspan="5"><img src="/imagenes/daf402e81711f4da6ac306856940b2d8.jpg" class="imgLogin"></td>
+                        <td><label class="labelLogin">Usuario</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="txtusuario" class="inputText"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="labelLogin">Password</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="txtpassword" class="inputPassword"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" value="Ingresar" class="inputLogin" id="ingresar"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
